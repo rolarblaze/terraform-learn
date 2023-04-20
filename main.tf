@@ -1,17 +1,13 @@
-
-
-
+# Using a single workspace:
 terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "4.63.0"
+  backend "remote" {
+    hostname = "app.terraform.io"
+    organization = "terraform-machine"
+
+    workspaces {
+      name = "getting-started"
     }
   }
-}
-
-provider "aws" {
-  region = "us-east-1"
 }
 
 resource "aws_instance" "test_server" {
